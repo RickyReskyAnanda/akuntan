@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layout.app')
 @section('content')
 <div class="container-fluid">
     <!-- <div class="block-header">
@@ -13,41 +13,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                            <thead>
-                                <tr>
-                                    <th rowspan="4">No</th>
-                                    <th rowspan="4">Kode & Nama Sub Kegiatan</th>
-                                    <th colspan="48">Pratinjau Laporan Menurut Bulan</th>
-                                    <th rowspan="4">#</th>
-                                </tr>
-                                <tr>
-                                    @for($i=1; $i<=12;$i++)
-                                    <th colspan="6">B<?php if(strlen($i)==1)echo "0";echo $i?></th>
-                                    @endfor
-                                </tr>
-                                <tr>
-                                    @for($i=0; $i < 12; $i++)
-                                    <th colspan="2">Anggaran</th>
-                                    <th colspan="2">Fisik</th>
-                                    <th rowspan="2">Kinerja Total</th>
-                                    <th rowspan="2">Status Pelaksanaan</th>
-                                    @endfor
-                                </tr>
-                                <tr>
-                                    @for($i=0; $i < 12; $i++)
-                                    <th>Realisasi</th>
-                                    <th>Kinerja</th>
-                                    <th>Realisasi</th>
-                                    <th>Kinerja</th>
-                                    @endfor
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>               
-
+                        
                     </div>
                     
                 </div>

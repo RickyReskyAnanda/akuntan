@@ -7,9 +7,7 @@ Route::get('logout','Auth\LoginController@logout');
 // Route::middleware('checklogin')->group(function () {
 Route::prefix('admin')->group(function () {
 
-	// Administrator
-	Route::get('/','SysDashboardController@index');
-
+	Route::get('/','HomeDashboardController@index');
 
 	// pemantauan
 	Route::get('/pemantauan','PemantauanController@index')->name('pemantauan');
