@@ -17,7 +17,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password],true))
         {
-            return redirect('backoffice');
+            return redirect('admin');
         }
         else{
             return redirect()->back()->with('pesan', 'Username atau Password Anda salah.');

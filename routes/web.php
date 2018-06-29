@@ -1,41 +1,59 @@
 <?php
 
-/*mahasiswa*/
 Route::get('/', 'Auth\LoginController@viewLogin');
 Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 
-Route::middleware('checklogin')->group(function () {
+// Route::middleware('checklogin')->group(function () {
+Route::prefix('admin')->group(function () {
 
-	/*Administrator*/
-	Route::get('backoffice','Admin\AdminController@viewBeranda');
-
-
-	Route::get('backoffice/proyek','Admin\ProyekController@viewProyek');
-	Route::post('backoffice/proyek/tambah','Admin\ProyekController@postAddProyek');
-	Route::get('backoffice/proyek/detail/{id}','Admin\ProyekController@viewDetailProyek');
-
-	//suplier
-	Route::get('backoffice/suplier','Admin\SuplierController@viewSuplier');
-	// Route::post('backoffice/suplier/tambah','Admin\SuplierController@postAddSuplier');
-		// Route::post('backoffice/suplier/edit','Admin\SuplierController@postEditSuplier');
-	// Route::get('backoffice/suplier/hapus.{id}','Admin\SuplierController@postDeleteSuplier');
-
-	Route::get('backoffice/suplier/{id}','Admin\SuplierController@viewDetailSuplier');//detail suplier
-	Route::get('backoffice/suplier/proyek/{id_suplier}/{id_proyek}','Admin\SuplierController@viewDetailProyekSuplier');//detail proyek suplier
-
-	//kontak
-	Route::get('backoffice/kontak','Admin\KontakController@viewKontak');
-	// Route::post('backoffice/kontak/tambah','Admin\KontakController@postAddKontak');
-	// Route::get('backoffice/kontak/edit.{id}','Admin\KontakController@viewEditKontak');
-	// 	Route::post('backoffice/kontak/edit','Admin\KontakController@postEditKontak');
-	// Route::get('backoffice/kontak/hapus.{id}','Admin\KontakController@postDeleteKontak');
+	// Administrator
+	Route::get('/','SysDashboardController@index');
 
 
-	Route::get('backoffice/user','Admin\UserController@viewUser');
-		
+	// pemantauan
+	Route::get('/pemantauan','PemantauanController@index')->name('pemantauan');
+	Route::get('/pemantauan/create','PemantauanController@create')->name('pemantauan.create');
+	Route::post('/pemantauan/store','PemantauanController@store')->name('pemantauan.store');
 
-	Route::get('backoffice/akun','Admin\AkunController@viewAkun');
-	// Route::post('backoffice/akun/data','Admin\AkunController@postEditAkun');
-	// Route::post('backoffice/akun/gantipassword','Admin\AkunController@postEditGantiPassword');
+	// permasalaham
+	Route::get('/permasalahan','PermasalahanController@index')->name('permasalahan');
+
+	// bukti
+	Route::get('/bukti','BuktiController@index')->name('bukti');
+
+	// pratinjau laporan
+	Route::get('/pratinjau','PratinjauLaporanController@index')->name('pratinjau');
+
+	//laporan
+	Route::get('/laporan','LaporanController@index')->name('laporan');
+
+	//user
+	Route::get('/user', 'UserController@index')->name('user');
+
+	//profil
+	Route::get('/profil', 'ProfilController@index')->name('profil');
 });
+
+// });
+
+// Route::prefix('api')->middleware('auth')->group(function () {
+Route::prefix('api/admin')->group(function () {
+	
+	Route::get('kegiatan', 'Api\KegiatanController@index');
+	// // user
+	// Route::get('user', 'Api\UserController@index');
+	// Route::post('user', 'Api\UserController@store');
+	// Route::get('user/{user}', 'Api\UserController@show');
+	// Route::put('user', 'Api\UserController@update');
+	// Route::delete('user/{user}', 'Api\UserController@destroy');	
+
+	// user
+	Route::get('user', 'Api\UserController@index');
+	Route::post('user', 'Api\UserController@store');
+	Route::get('user/{user}', 'Api\UserController@show');
+	Route::put('user', 'Api\UserController@update');
+	Route::delete('user/{user}', 'Api\UserController@destroy');
+
+});
+

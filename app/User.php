@@ -14,8 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'emonevuser';
     protected $fillable = [
-        'name', 'username', 'password','sts',
+        'name', 'username', 'password','sts','level','created_by','updated_by'
     ];
 
     /**
@@ -27,17 +28,4 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function jumlahDataUjian(){
-        return $this->hasMany('App\Model\UjianModel','id_user','id');
-    }
-
-    public function getPengujiJaringan(){
-        return $this->hasOne('App\Model\PengujiModel','id_penguji','id_penguji_jaringan');
-    }
-    public function getPengujiRPL(){
-        return $this->hasOne('App\Model\PengujiModel','id_penguji','id_penguji_rpl');
-    }
-    public function getPengujiAgama(){
-        return $this->hasOne('App\Model\PengujiModel','id_penguji','id_penguji_agama');
-    }
 }
